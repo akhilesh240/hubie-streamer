@@ -1,0 +1,15 @@
+[Unit]
+Description=Hubie AI streamer
+After=network-online.target
+
+[Service]
+User=hubie
+WorkingDirectory=/opt/hubie-streamer
+EnvironmentFile=/opt/hubie-streamer/.env
+Environment=DISPLAY=:99
+ExecStart=/opt/hubie-streamer/.venv/bin/python -m hubie.main
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

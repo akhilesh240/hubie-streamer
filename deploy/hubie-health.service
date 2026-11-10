@@ -1,0 +1,7 @@
+[Unit]
+Description=Restart Hubie if unhealthy
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/hubie-streamer
+ExecStart=/bin/sh -c '/opt/hubie-streamer/.venv/bin/python scripts/healthcheck.py || systemctl restart hubie'

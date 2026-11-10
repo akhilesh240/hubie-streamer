@@ -1,0 +1,7 @@
+anthropic>=0.40
+aiohttp>=3.9
+websockets>=12
+edge-tts>=6.1
+playwright>=1.44
+pyyaml>=6
+httpx>=0.27

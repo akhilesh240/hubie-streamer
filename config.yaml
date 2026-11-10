@@ -1,0 +1,51 @@
+platform: kick            # kick | twitch  (check each platform's gambling-content rules first)
+kick_channel: yourchannel
+kick_chatroom_id: 0       # numeric chatroom id of your channel (see README)
+twitch_channel: yourchannel
+
+llm_provider: deepseek   # deepseek | anthropic
+llm_model: deepseek-flash # anthropic: claude-haiku-5-5 / claude-sonnet-5-5
+voice: en-US-AndrewMultilingualNeural   # natural conversational male voice; ElevenLabs overrides this when configured
+voice_rate: "-4%"          # natural conversational pace
+overlay_port: 8000
+
+disclaimer_every_sec: 600 # 18+ / responsible gambling reminder
+idle_after_sec: 20        # Hubie never stays silent longer than this
+chat_cooldown_per_user_sec: 20
+max_queue: 8
+
+# game_mode: demo = built-in play-credit Dice (recommended, no browser)  |  browser = drive a site via Playwright
+game_mode: demo
+demo_game:
+  start_credits: 1000
+  round_delay_sec: 9
+  rounds_per_segment: 12
+  commentary_chance: 0.7   # chance (0-1) that Hubie adds extra commentary after a roll
+  # Segments rotate their commentary focus so long runs do not feel identical.
+
+# Demo-mode games only (used when game_mode: browser). URLs/selectors are PLACEHOLDERS: open the page, inspect, fix.
+browser_profile: .browser-profile  # persistent Chrome profile (gitignored)
+blocked_retry_sec: 600        # if game page shows a security check: talk-only, retry later
+
+games:
+  - name: Dice
+    url: https://housebets.com/games/dice
+    demo_selectors: ["text=Demo", "text=Play for fun"]
+    play_selector: "button:has-text('Roll')"
+    result_selector: null
+    rounds: 15
+    round_delay_sec: 6
+  - name: Plinko
+    url: https://housebets.com/games/plinko
+    demo_selectors: ["text=Demo", "text=Play for fun"]
+    play_selector: "button:has-text('Bet')"
+    result_selector: null
+    rounds: 15
+    round_delay_sec: 6
+
+# Simulated audience (labelled on screen). Ignored automatically once kick_chatroom_id / twitch_channel is set.
+simulated_chat: true
+# AI-driven demo audience: 15 rotating viewer identities, fresh questions/comments,
+# then Hubie answers each message by name.
+demo_chat_min_delay_sec: 12
+demo_chat_max_delay_sec: 28
