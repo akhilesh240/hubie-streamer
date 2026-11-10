@@ -1,3 +1,4 @@
+![Hubie live stream](Screenshot.png)
 # Hubie, live 24/7 (Housebets contest entry)
 
 An AI streamer that plays House originals in **demo mode**, talks with chat and runs with **no human** on Kick or Twitch.
